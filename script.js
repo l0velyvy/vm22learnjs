@@ -1,20 +1,18 @@
-for(let i=1;i<=200;i++){
 
-    if(i%5===0 && i%7===0){
-        console.log('foobar');
-    } else if(i%5===0){
-        console.log('foo');
-    } else if (i%7===0){
-        console.log('bar');
-    } 
-    console.log(i);
-}
+const express = require('express');
+const app = express();
+const nunjucks = require('nunjucks');
 
-const express = require('express')
-const app = express()
+nunjucks configure('views'  {
+    autoescape: true,
+    express: app
+});
 
-app.get('/', function (req, res) {
-  res.send('Hello World')
+app.get('/', function (req, res)  {
+    res.sendFile(__dirname + '/index.html');
+    let name = 'Evelyn Eichenberg';
+    res.render('index.njk')
 })
 
 app.listen(3000)
+console.log('server started on http://localhost:3000')
